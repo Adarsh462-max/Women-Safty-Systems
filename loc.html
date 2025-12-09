@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Sender with Live Location</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        text-align: center;
+        padding: 20px;
+      }
+      .container {
+        max-width: 400px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin: auto;
+      }
+      input,
+      textarea,
+      button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Send Email with Live Location</h2>
+
+      <form id="contactForm">
+        <input
+          type="email"
+          id="to_email"
+          placeholder="Recipient's Email"
+          required
+        />
+        <textarea id="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Email with Location</button>
+      </form>
+      <p id="status"></p>
+    </div>
+
+    <!-- Include EmailJS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init("Dd8k2ww36DYf7nZIZ"); // Replace with your EmailJS Public Key
+      })();
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent page reload
+
+          // Get User's Live Location
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              function (position) {
+                let latitude = position.coords.latitude;
+                let longitude = position.coords.longitude;
+                var locationLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+
+                // Send Email with Live Location
+                emailjs
+                  .send("service_yymc3ur", "template_rzrimln", {
+                    from_name: "Women Safety System", // Fixed sender name
+                    from_email: "bnvm001167@gmail.com", // Fixed sender email (set in EmailJS)
+                    to_email: document.getElementById("to_email").value, // Dynamic recipient email
+                    message: document.getElementById("message").value,
+                    location: locationLink,
+                  })
+                  .then(
+                    function (response) {
+                      document.getElementById("status").innerHTML =
+                        "✅ Email Sent Successfully!";
+                    },
+                    function (error) {
+                      document.getElementById("status").innerHTML =
+                        "❌ Failed to Send Email: " + error.text;
+                    }
+                  );
+              },
+              function (error) {
+                document.getElementById("status").innerHTML =
+                  "❌ Location access denied!";
+              }
+            );
+          } else {
+            document.getElementById("status").innerHTML =
+              "❌ Geolocation is not supported by your browser.";
+          }
+        });
+    </script>
+  </body>
+</html>

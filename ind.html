@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Email</button>
+    </form>
+    <p id="status"></p>
+
+    <!-- Include EmailJS Library -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+      (function () {
+        emailjs.init("Dd8k2ww36DYf7nZIZ"); // Replace with your EmailJS Public Key
+      })();
+
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent page reload
+
+          emailjs
+            .send("service_yymc3ur", "template_rzrimln", {
+              from_name: document.getElementById("name").value,
+              to_email: document.getElementById("email").value,
+              message: document.getElementById("message").value,
+            })
+            .then(
+              function (response) {
+                document.getElementById("status").innerHTML =
+                  "✅ Email Sent Successfully!";
+              },
+              function (error) {
+                document.getElementById("status").innerHTML =
+                  "❌ Failed to Send Email: " + error.text;
+              }
+            );
+        });
+    </script>
+  </body>
+</html>

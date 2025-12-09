@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="getLocation()">Get My Location</button>
+    <p id="location"></p>
+
+    <script>
+      function getLocation() {
+        if ("geolocation" in navigator) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              let latitude = position.coords.latitude;
+              let longitude = position.coords.longitude;
+              document.getElementById(
+                "location"
+              ).innerHTML = `📍 Latitude: ${latitude} <br> 📍 Longitude: ${longitude}`;
+            },
+            function (error) {
+              document.getElementById(
+                "location"
+              ).innerHTML = `⚠ Error: ${error.message}`;
+            }
+          );
+        } else {
+          document.getElementById("location").innerHTML =
+            "Geolocation is not supported by your browser.";
+        }
+      }
+    </script>
+    <script>
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+            console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+          },
+          function (error) {
+            console.error("Error getting location:", error.message);
+          }
+        );
+      } else {
+        console.log("Geolocation is not supported by this browser.");
+      }
+
+      function getLocation() {
+        if ("geolocation" in navigator) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              let latitude = position.coords.latitude;
+              let longitude = position.coords.longitude;
+              let mapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+
+              document.getElementById(
+                "location"
+              ).innerHTML = `<a href="${mapLink}" target="_blank">📍 Open in Google Maps</a>`;
+            },
+            function (error) {
+              document.getElementById(
+                "location"
+              ).innerHTML = `⚠ Error: ${error.message}`;
+            }
+          );
+        } else {
+          document.getElementById("location").innerHTML =
+            "Geolocation is not supported by your browser.";
+        }
+      }
+    </script>
+  </body>
+</html>

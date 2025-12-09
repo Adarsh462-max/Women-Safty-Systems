@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/4ee361ff45.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Women Safety SOS</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="light-mode">
+    <header id="hero">
+      <nav class="navbar">
+        <div class="logo">🚨 SOS Safety</div>
+        <ul class="nav-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-to-use">How to use</a></li>
+          <li>
+            <button class="sign" onclick="openSignup()">Sign Up</button>
+          </li>
+          <!-- <li>
+            <button id="theme-toggle" class="toggle-btn">
+              <span class="toggle-circle"></span>
+            </button>
+          </li> -->
+        </ul>
+        <div class="hamburger">&#9776;</div>
+      </nav>
+
+      <!-- Sidebar Menu for Mobile -->
+      <div class="sidebar">
+        <span class="close-btn">&times;</span>
+        <ul class="nav-links" id="nav-link">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Features</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+          <li>
+            <p id="mode" style="color: white">Light Mode</p>
+            <button id="theme-toggle-sidebar" class="toggle-btn">
+              <span class="toggle-circle"></span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Sign Up Button
+      <button class="signup-btn" >Sign Up</button> -->
+
+      <!-- Sign Up Modal -->
+      <div class="signup-modal" id="signupModal">
+        <div class="signup-content">
+          <span class="close-btn" onclick="closeSignup()">&times;</span>
+          <h2 style="margin: 0">Sign Up</h2>
+          <p style="margin: 2px">Join us and ensure your safety!</p>
+
+          <form id="signupForm">
+            <label for="fullName">Full Name</label>
+            <input
+              type="text"
+              id="fullName"
+              placeholder="Enter your full name"
+              required
+            />
+
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              required
+            />
+
+            <label for="phone">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              placeholder="Enter your phone number"
+              required
+            />
+
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Create a password"
+              required
+            />
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm your password"
+              required
+            />
+
+            <label for="emergencyContact">Emergency Contact</label>
+            <input
+              type="tel"
+              id="emergencyContact"
+              placeholder="Trusted contact number"
+              required
+            />
+            <label for="emergencyContact">Emergency Email</label>
+            <input
+              type="email"
+              id="emergencyEmail"
+              placeholder="Trusted contact Email"
+              required
+            />
+
+            <button type="submit">Sign Up</button>
+          </form>
+        </div>
+      </div>
+    </header>
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Ensuring Safety for Every Woman</h1>
+          <p>
+            Our platform provides real-time security features, SOS alerts, and
+            emergency assistance to keep women safe in public places.
+          </p>
+          <button id="helpBtn" class="cta-button">🚨 SOS</button>
+        </div>
+        <div id="helpModal1" class="modal1">
+          <div class="modal-content1">
+            <span class="clos">&times;</span>
+            <h2 style="color: black">Are You Feeling Uncomfortable?</h2>
+
+            <!-- Questions for Verification -->
+            <div class="questions" style="color: black">
+              <p><input type="checkbox" id="q1" /> Someone is following me</p>
+              <p>
+                <input type="checkbox" id="q2" /> Someone is staring at me
+                continuously
+              </p>
+              <p>
+                <input type="checkbox" id="q3" /> Someone is trying to touch
+                inappropriately
+              </p>
+              <p>
+                <input type="checkbox" id="q4" /> Someone is making verbal
+                comments
+              </p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="actions">
+              <button id="simpleAlertBtn" class="simple-alert">
+                🔊 Simple Alert
+              </button>
+              <div id="popup" class="popup">
+                <div class="popup-content">
+                  <!-- Alarm Image -->
+                  <img src="images/alarm.gif" alt="Alarm" class="alarm-img" />
+                  <h2 style="color: black">🚨 Alert Activated! 🚨</h2>
+                  <p style="color: black">
+                    Attention! Please be aware of the situation.
+                  </p>
+                  <button id="closePopup" class="close-popup-btn">Close</button>
+                </div>
+                <p id="status"></p>
+              </div>
+
+              <button id="emergencyBtn" class="emergency">🚨 Emergency</button>
+            </div>
+
+            <!-- Close Button -->
+          </div>
+        </div>
+
+        <!-- High-Frequency Beep Sound (Hidden) -->
+        <audio id="beepSound">
+          <source
+            src="images\emergency-alarm-with-reverb-29431.mp3"
+            type="audio/mpeg"
+          />
+        </audio>
+      </section>
+      <!-- Features Section -->
+      <section class="features" id="features">
+        <h2>Key Features</h2>
+        <div class="features-container">
+          <!-- Feature 1 -->
+          <div class="feature-card" onclick="toggleFeature(1)">
+            <h3>🔴 SOS Alert System</h3>
+            <p>Send emergency alerts with location instantly.</p>
+            <div class="feature-details" id="feature-1">
+              <p>
+                With just one tap, an SOS alert is sent to your trusted contacts
+                and emergency services, along with your real-time location.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 2 -->
+          <div class="feature-card" onclick="toggleFeature(2)">
+            <h3>📍 Live Location Sharing</h3>
+            <p>Share your real-time location with loved ones.</p>
+            <div class="feature-details" id="feature-2">
+              <p>
+                Stay connected and let your friends or family track your
+                location for safety.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 3 -->
+          <div class="feature-card" onclick="toggleFeature(3)">
+            <h3>🎥 Auto Video Recording</h3>
+            <p>Automatically record a 10-sec video when SOS is triggered.</p>
+            <div class="feature-details" id="feature-3">
+              <p>
+                A short video will be recorded and sent to trusted contacts when
+                you activate the SOS button.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 4 -->
+          <div class="feature-card" onclick="toggleFeature(4)">
+            <h3>⚠️ Unsafe Area Alerts</h3>
+            <p>Get alerts about unsafe areas in real-time.</p>
+            <div class="feature-details" id="feature-4">
+              <p>
+                Using crowd-sourced data and reports, get notified about
+                potentially dangerous areas around you.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How to Use Section -->
+      <section class="how-to-use" id="how-to-use">
+        <h2>How to Use Our Website</h2>
+        <div class="steps-container">
+          <!-- Step 1 -->
+          <div class="step">
+            <div class="step-icon">📝</div>
+            <h3>1. Register & Login</h3>
+            <p>Create your account with basic details and log in securely.</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step">
+            <div class="step-icon">📍</div>
+            <h3>2. Enable Location</h3>
+            <p>Allow location access to use live tracking and SOS alerts.</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step">
+            <div class="step-icon">🔴</div>
+            <h3>3. Use SOS Feature</h3>
+            <p>
+              In an emergency, press the SOS button to send alerts to trusted
+              contacts.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step">
+            <div class="step-icon">🎥</div>
+            <h3>4. Auto Video Recording</h3>
+            <p>
+              When SOS is triggered, a 10-sec video will be recorded and sent
+              automatically.
+            </p>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="step">
+            <div class="step-icon">⚠️</div>
+            <h3>5. Stay Alert</h3>
+            <p>
+              Receive real-time unsafe area alerts and stay informed about
+              surroundings.
+            </p>
+          </div>
+          <!-- Step 6 -->
+          <div class="step">
+            <div class="step-icon">⚠️</div>
+            <h3>5. Stay Alert</h3>
+            <p>
+              Receive real-time unsafe area alerts and stay informed about
+              surroundings.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Who Can Benefit Section -->
+      <section class="who-benefits" id="who-benefits">
+        <h2>Who Can Benefit from This Platform?</h2>
+        <div class="benefits-container">
+          <!-- Benefit 1 -->
+          <div class="benefit-card">
+            <div class="benefit-icon">👩‍🎓</div>
+            <h3>Students</h3>
+            <p>
+              Ensuring safety for students traveling alone or studying late.
+            </p>
+          </div>
+
+          <!-- Benefit 2 -->
+          <div class="benefit-card">
+            <div class="benefit-icon">🏢</div>
+            <h3>Working Women</h3>
+            <p>
+              Helping professionals stay secure during late office hours and
+              commutes.
+            </p>
+          </div>
+
+          <!-- Benefit 3 -->
+          <div class="benefit-card">
+            <div class="benefit-icon">🚖</div>
+            <h3>Solo Travelers</h3>
+            <p>
+              Providing safety tools for women traveling alone in unknown areas.
+            </p>
+          </div>
+
+          <!-- Benefit 4 -->
+          <div class="benefit-card">
+            <div class="benefit-icon">👵</div>
+            <h3>Senior Citizens</h3>
+            <p>Ensuring elderly women feel safe in public spaces.</p>
+          </div>
+
+          <!-- Benefit 5 -->
+          <div class="benefit-card">
+            <div class="benefit-icon">👨‍👩‍👧</div>
+            <h3>Concerned Families</h3>
+            <p>
+              Allowing families to track and ensure the safety of their loved
+              ones.
+            </p>
+          </div>
+
+          <!-- Benefit 6 (NEW) -->
+          <div class="benefit-card">
+            <div class="benefit-icon">🚔</div>
+            <h3>Law Enforcement</h3>
+            <p>
+              Helping authorities respond faster to emergencies and unsafe
+              areas.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer" id="footer">
+      <div class="footer-container">
+        <!-- Logo & Tagline -->
+        <div class="footer-logo">
+          <h2>SafeWomen</h2>
+          <p>Your safety, our priority.</p>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#how-to-use">How to Use</a></li>
+            <li><a href="#who-benefits">Who Benefits</a></li>
+            <li><a href="#hero">Home</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p>Email: support@safewomen.com</p>
+          <p>Phone: +91 98765 43210</p>
+        </div>
+
+        <!-- Social Media Links -->
+        <div class="footer-social">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="footer-bottom">
+        <p>© 2025 SafeWomen. All Rights Reserved.</p>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
